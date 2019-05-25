@@ -7,15 +7,21 @@ port: 8089
 committee:
   numOfRetries: 8
   gravityChainAPIs:
-    - wss://kovan.infura.io/ws
+    - https://mainnet.infura.io/v3/b355cae6fafc4302b106b937ee6c15af
+    - wss://us-east-1.iotex.world/ws
+    - wss://singapore-1.iotex.world/ws
+    - wss://tokyo-1.iotex.world/ws
+    - wss://paris-1.iotex.world/ws
+    - wss://us-west-1.iotex.world/ws
+    - wss://sydney-1.iotex.world/ws
   gravityChainHeightInterval: 100
-  gravityChainStartHeight: 10518000
-  registerContractAddress: 0xb4ca6cf2fe760517a3f92120acbe577311252663
-  stakingContractAddress: 0xdedf0c1610d8a75ca896d8c93a0dc39abf7daff4
+  gravityChainStartHeight: 7614500
+  registerContractAddress: 0x95724986563028deb58f15c5fac19fa09304f32d
+  stakingContractAddress: 0x87c9dbff0016af23f5b1ab9b8e072124ab729193
   paginationSize: 100
   voteThreshold: "100000000000000000000"
-  scoreThreshold: "0"
-  selfStakingThreshold: "0"
+  scoreThreshold: "2000000000000000000000000"
+  selfStakingThreshold: "1200000000000000000000000"
   cacheSize: 100
 
 scoreThreshold: "2000000000000000000000000"
