@@ -11,7 +11,7 @@ COPY . .
 
 RUN rm -rf ./bin/server && \
     rm -rf election.db && \
-    CGO_ENABLED=0 GOOS=linux GOARCH=amd64  go build -a -installsuffix cgo -o ./bin/server -v . && \
+    go build -o ./bin/server -v . && \
     cp ./bin/server /usr/local/bin/iotex-server  && \
     mkdir -p /etc/iotex/ && \
     cp server.yaml /etc/iotex/server.yaml && \
