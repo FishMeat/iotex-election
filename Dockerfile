@@ -20,5 +20,6 @@ RUN rm -rf ./bin/server && \
 FROM scratch
 
 COPY --from=build-env /etc/iotex /etc/iotex
+COPY --from=build-env /usr/local/bin/iotex-server /usr/local/bin/iotex-server
 
-ENTRYPOINT [ "/etc/iotex/iotex-server", "-config=/etc/iotex/server.yaml"]
+CMD [ "iotex-server", "-config=/etc/iotex/server.yaml"]
