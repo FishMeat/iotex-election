@@ -7,7 +7,7 @@ RUN apt-get install -y --no-install-recommends make
 COPY go.mod .
 COPY go.sum .
 
-RUN go mod vendor
+RUN go mod download
 
 COPY . .
 
