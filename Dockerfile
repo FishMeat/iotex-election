@@ -17,6 +17,6 @@ RUN rm -rf ./bin/server && \
     cp ./bin/server /usr/local/bin/iotex-server  && \
     mkdir -p /etc/iotex/ && \
     cp server.yaml /etc/iotex/server.yaml && \
-    rm -rf $GOPATH
+    rm -rf apps/iotex-election
 
 CMD [ "iotex-server", "-config=/etc/iotex/server.yaml"]
