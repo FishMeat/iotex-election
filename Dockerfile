@@ -17,7 +17,7 @@ RUN rm -rf ./bin/server && \
     cp server.yaml /etc/iotex/server.yaml && \
     rm -rf apps/iotex-election
 
-FROM golang:1.12.5-stretch
+FROM scratch
 
 COPY --from=build-env /etc/iotex /etc/iotex
 
