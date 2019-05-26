@@ -1,6 +1,8 @@
-FROM golang:1.12.5-stretch AS build-env
+FROM golang:1.12.5-stretch
 
 WORKDIR apps/iotex-election
+
+RUN apt-get install -y --no-install-recommends make
 
 COPY go.mod .
 COPY go.sum .
@@ -15,11 +17,6 @@ RUN rm -rf ./bin/server && \
     cp ./bin/server /usr/local/bin/iotex-server  && \
     mkdir -p /etc/iotex/ && \
     cp server.yaml /etc/iotex/server.yaml && \
-    rm -rf apps/iotex-election
+    rm -rf $GOPATH
 
-FROM scratch
-
-COPY --from=build-env /etc/iotex/server.yaml /etc/iotex/server.yaml
-COPY --from=build-env /usr/local/bin/iotex-server /usr/local/bin/iotex-server
-
-ENTRYPOINT [ "/usr/local/bin/iotex-server", "-config=/etc/iotex/server.yaml"]
+CMD [ "iotex-server", "-config=/etc/iotex/server.yaml"]
