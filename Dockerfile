@@ -22,4 +22,4 @@ FROM scratch
 COPY --from=build-env /etc/iotex/server.yaml /etc/iotex/server.yaml
 COPY --from=build-env /usr/local/bin/iotex-server /usr/local/bin/iotex-server
 
-CMD [ "/usr/local/bin/iotex-server", "-config=/etc/iotex/server.yaml"]
+ENTRYPOINT [ "/usr/local/bin/iotex-server", "-config=/etc/iotex/server.yaml"]
