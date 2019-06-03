@@ -1,5 +1,7 @@
 FROM golang:1.12.5-stretch
 
+ENV GO111MODULE on
+
 WORKDIR /go/src/iotex-election
 
 COPY . .
