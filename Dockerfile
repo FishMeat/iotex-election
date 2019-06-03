@@ -1,4 +1,4 @@
-FROM golang:1.12.5-stretch AS builder
+FROM golang:1.12.5-stretch
 
 ENV GO111MODULE on
 
@@ -8,10 +8,11 @@ COPY . .
 
 RUN go mod tidy
 
-RUN go build -o ./bin/server -v .
+RUN rm -rf ./bin/server && \
+    rm -rf election.db && \
+    go build -o ./bin/server -v . && \
+    cp ./bin/server /usr/local/bin/iotex-server  && \
+    mkdir -p /etc/iotex/ && \
+    cp server.yaml /etc/iotex/server.yaml
 
-FROM scratch
-COPY --from=builder /go/src/iotex-election/bin/server .
-COPY --from=builder /go/src/iotex-election/server.yaml .
-
-CMD [ "/server", "-config=/server.yaml"]
+CMD [ "iotex-server", "-config=/etc/iotex/server.yaml"]
