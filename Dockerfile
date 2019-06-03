@@ -1,15 +1,11 @@
 FROM golang:1.12.5-stretch
 
-WORKDIR apps/iotex-election
-
-RUN apt-get install -y --no-install-recommends make
-
-COPY go.mod .
-COPY go.sum .
-
-RUN go mod download
+WORKDIR /go/src/iotex-election
 
 COPY . .
+
+RUN go get -d -v ./...
+RUN go install -v ./...
 
 RUN rm -rf ./bin/server && \
     rm -rf election.db && \
@@ -17,6 +13,6 @@ RUN rm -rf ./bin/server && \
     cp ./bin/server /usr/local/bin/iotex-server  && \
     mkdir -p /etc/iotex/ && \
     cp server.yaml /etc/iotex/server.yaml && \
-    rm -rf apps/iotex-election
+    rm -rf /go/src/iotex-election
 
 CMD [ "iotex-server", "-config=/etc/iotex/server.yaml"]
