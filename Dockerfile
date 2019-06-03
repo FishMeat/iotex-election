@@ -13,6 +13,7 @@ RUN rm -rf ./bin/server && \
     go build -o ./bin/server -v . && \
     cp ./bin/server /usr/local/bin/iotex-server  && \
     mkdir -p /etc/iotex/ && \
-    cp server.yaml /etc/iotex/server.yaml
+    cp server.yaml /etc/iotex/server.yaml && \
+    rm -rf /go/src/iotex-election
 
 CMD [ "iotex-server", "-config=/etc/iotex/server.yaml"]
